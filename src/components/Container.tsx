@@ -5,12 +5,14 @@ export type ContainerProps = BoxProps & {
 };
 
 export const Container: React.FC<ContainerProps> = (props) => {
+  const { enablePadding: _, ...boxProps } = props;
+
   return (
     <Box
       maxW={1240}
       marginX="auto"
       {...(props.enablePadding && { px: "10" })}
-      {...props}
+      {...boxProps}
     >
       {props.children}
     </Box>
