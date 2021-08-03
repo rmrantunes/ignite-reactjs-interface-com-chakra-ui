@@ -11,6 +11,11 @@ export const theme = extendTheme({
     infoLight: "#DADADA",
   },
 
+  fonts: {
+    heading: "Poppins",
+    body: "Poppins",
+  },
+
   styles: {
     global: {
       body: {
