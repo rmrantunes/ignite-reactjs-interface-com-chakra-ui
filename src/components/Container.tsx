@@ -11,7 +11,7 @@ export const Container: React.FC<ContainerProps> = (props) => {
     <Box
       maxW={1240}
       marginX="auto"
-      {...(props.enablePadding && { px: "10" })}
+      {...(props.enablePadding && { px: "4" })}
       {...boxProps}
     >
       {props.children}
