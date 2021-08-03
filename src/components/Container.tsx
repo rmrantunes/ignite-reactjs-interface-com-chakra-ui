@@ -1,12 +1,17 @@
-import { Box } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
-export type ContainerProps = {
+export type ContainerProps = BoxProps & {
   enablePadding?: boolean;
 };
 
 export const Container: React.FC<ContainerProps> = (props) => {
   return (
-    <Box maxW={1240} marginX="auto" {...(props.enablePadding && { px: "10" })}>
+    <Box
+      maxW={1240}
+      marginX="auto"
+      {...(props.enablePadding && { px: "10" })}
+      {...props}
+    >
       {props.children}
     </Box>
   );
