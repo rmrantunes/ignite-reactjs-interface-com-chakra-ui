@@ -20,6 +20,7 @@ export const theme = extendTheme({
     global: {
       body: {
         bgColor: "textLight",
+        color: "textDark",
       },
     },
   },
