@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import { HomeHero } from "components/HomeHero";
 import { Container } from "components/Container";
@@ -7,7 +7,7 @@ import { ContinentsLinksSlider } from "components/ContinentsLinksSlider";
 
 export default function Home() {
   return (
-    <main>
+    <Box pb="8">
       <HomeHero />
       <Container>
         <DestinationTypesList />
@@ -25,6 +25,6 @@ export default function Home() {
       <Container enablePadding={false}>
         <ContinentsLinksSlider />
       </Container>
-    </main>
+    </Box>
   );
 }
