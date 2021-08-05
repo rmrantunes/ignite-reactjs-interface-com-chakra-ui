@@ -1,22 +1,43 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+
 import { Banner } from "components/Banner";
 import { CityCard } from "components/CityCard";
 import { Container } from "components/Container";
 import { ContinentHighlights } from "components/ContinentHighlights";
 
-export default function ContinentPage() {
+type City = {
+  city: string;
+  country: string;
+  image: string;
+  countryFlag: string;
+};
+
+type ContinentPageProps = {
+  continent: {
+    banner: string;
+    continentName: string;
+    smallDescription: string;
+    countriesCount: number;
+    languagesCount: number;
+    citiesInTop100Count: number;
+    citiesInTop100: City[];
+  };
+};
+
+export default function ContinentPage(props: ContinentPageProps) {
   return (
     <main>
-      <Banner title="Europe" bgImage="/europe-cover.jpg" />
+      <Banner
+        title={props.continent.continentName}
+        bgImage={props.continent.banner}
+      />
       <Container as="article" pb={{ base: "5", md: "12" }}>
         <ContinentHighlights
-          smallDescription="A Europa é, por convenção, um dos seis continentes do mundo.
-            Compreendendo a península ocidental da Eurásia, a Europa geralmente
-            divide-se da Ásia a leste pela divisória de águas dos montes Urais,
-            o rio Ural, o mar Cáspio, o Cáucaso, e o mar Negro a sudeste."
-          countriesCount={50}
-          languagesCount={60}
-          citiesInTop100Count={27}
+          smallDescription={props.continent.smallDescription}
+          countriesCount={props.continent.countriesCount}
+          languagesCount={props.continent.languagesCount}
+          citiesInTop100Count={props.continent.citiesInTop100Count}
         />
         <Box as="section" mt={{ base: "4", md: 0 }}>
           <Heading
@@ -28,30 +49,15 @@ export default function ContinentPage() {
           </Heading>
 
           <SimpleGrid minChildWidth={256} gap="8">
-            <CityCard
-              image="/europe-cover.jpg"
-              country="Reino Unido"
-              city="Londres"
-              flag="https://restcountries.eu/data/gbr.svg"
-            />
-            <CityCard
-              image="/europe-cover.jpg"
-              country="Reino Unido"
-              city="Londres"
-              flag="https://restcountries.eu/data/gbr.svg"
-            />
-            <CityCard
-              image="/europe-cover.jpg"
-              country="Reino Unido"
-              city="Londres"
-              flag="https://restcountries.eu/data/gbr.svg"
-            />
-            <CityCard
-              image="/europe-cover.jpg"
-              country="Reino Unido"
-              city="Londres"
-              flag="https://restcountries.eu/data/gbr.svg"
-            />
+            {props.continent.citiesInTop100.map((city) => (
+              <CityCard
+                key={city.countryFlag}
+                image={city.image}
+                country={city.country}
+                city={city.city}
+                countryFlag={city.countryFlag}
+              />
+            ))}
           </SimpleGrid>
         </Box>
       </Container>
@@ -59,13 +65,18 @@ export default function ContinentPage() {
   );
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [{ params: { continent: "europe" } }],
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { continent: "europe" } }],
+    fallback: false,
+  };
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   return { props: { continent: params?.continent } };
-// };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const response = await fetch(
+    `http://localhost:8080/continent/${params?.continent}`
+  );
+  const continent = await response.json();
+
+  return { props: { continent } };
+};
