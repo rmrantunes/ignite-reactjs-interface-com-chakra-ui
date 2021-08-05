@@ -5,7 +5,7 @@ type CityCardProps = {
   image: string;
   city: string;
   country: string;
-  flag?: string;
+  countryFlag?: string;
 };
 
 export const CityCard = (props: CityCardProps) => {
@@ -31,12 +31,12 @@ export const CityCard = (props: CityCardProps) => {
           <Text as="strong">{props.city}</Text>
           <Text as="span">{props.country}</Text>
         </VStack>
-        {props.flag && (
+        {props.countryFlag && (
           <Cover
             rounded="full"
             h="8"
             w="8"
-            bgImage={props.flag}
+            bgImage={props.countryFlag}
             aria-label={`Bandeira: ${props.country}`}
           />
         )}
