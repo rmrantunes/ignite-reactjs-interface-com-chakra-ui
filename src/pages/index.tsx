@@ -7,7 +7,7 @@ import { ContinentsLinksSlider } from "components/ContinentsLinksSlider";
 
 export default function Home() {
   return (
-    <Box pb="8">
+    <Box as="main" pb="8">
       <HomeHero />
       <Container>
         <DestinationTypesList />
