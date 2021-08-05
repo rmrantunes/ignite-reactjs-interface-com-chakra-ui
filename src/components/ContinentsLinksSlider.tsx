@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper/core";
 import { Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
@@ -11,7 +12,7 @@ const continents = [
     title: "Europa",
     subtitle: "O continente mais velho do mundo",
     image: "/europe-cover.jpg",
-    href: "/continents/europe",
+    href: "/continent/europe",
   },
 ];
 
@@ -29,18 +30,20 @@ export const ContinentsLinksSlider = () => {
             justifyContent="center"
             color="textLight"
           >
-            <ChakraLink textAlign="center">
-              <Heading
-                fontSize={{ base: "2xl", md: "5xl" }}
-                fontWeigh="bold"
-                mb={{ base: "3", md: "4" }}
-              >
-                {continent.title}
-              </Heading>
-              <Text fontSize={{ base: "sm", md: "2xl" }} fontWeigh="bold">
-                {continent.subtitle}
-              </Text>
-            </ChakraLink>
+            <Link href={continent.href} passHref>
+              <ChakraLink textAlign="center">
+                <Heading
+                  fontSize={{ base: "2xl", md: "5xl" }}
+                  fontWeigh="bold"
+                  mb={{ base: "3", md: "4" }}
+                >
+                  {continent.title}
+                </Heading>
+                <Text fontSize={{ base: "sm", md: "2xl" }} fontWeigh="bold">
+                  {continent.subtitle}
+                </Text>
+              </ChakraLink>
+            </Link>
           </Cover>
         </SwiperSlide>
       ))}
