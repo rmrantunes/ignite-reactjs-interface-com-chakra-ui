@@ -1,7 +1,9 @@
+import { Text } from "@chakra-ui/react";
+
 import { HomeHero } from "components/HomeHero";
 import { Container } from "components/Container";
 import { DestinationTypesList } from "components/DestinationTypesList";
-import { Text } from "@chakra-ui/react";
+import { ContinentsLinksSlider } from "components/ContinentsLinksSlider";
 
 export default function Home() {
   return (
@@ -20,7 +22,9 @@ export default function Home() {
           Vamos nessa? <br /> Então escolha seu continente
         </Text>
       </Container>
-      <Container enablePadding={false}>Slide</Container>
+      <Container enablePadding={false}>
+        <ContinentsLinksSlider />
+      </Container>
     </main>
   );
 }
