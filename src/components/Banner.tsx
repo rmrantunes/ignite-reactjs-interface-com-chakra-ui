@@ -14,6 +14,7 @@ export const Banner = (props: BannerProps) => {
       h={{ base: "36", md: "31.25rem" }}
       bgImage={props.bgImage}
       aria-label={`Background image: ${props.title}`}
+      darken
     >
       <Container
         display="flex"
