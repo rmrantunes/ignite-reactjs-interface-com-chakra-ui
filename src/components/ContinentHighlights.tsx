@@ -7,12 +7,12 @@ type ContinentHighlightsProps = {
   citiesInTop100Count: number;
 };
 
-type StatsProps = {
+type AttributeProps = {
   value: string | number;
   label: string;
 };
 
-const Stats = (props: StatsProps) => (
+const Attribute = (props: AttributeProps) => (
   <VStack as="li" spacing={{ base: "-1", md: "-4" }}>
     <Text as="strong" color="highlight" fontSize={{ base: "2xl", md: "5xl" }}>
       {props.value}
@@ -35,6 +35,7 @@ export const ContinentHighlights = (props: ContinentHighlightsProps) => {
       templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
       gap={{ base: "4", md: "16" }}
       alignItems="center"
+      py={{ base: "4", md: "20" }}
     >
       <Text
         textAlign="justify"
@@ -45,9 +46,9 @@ export const ContinentHighlights = (props: ContinentHighlightsProps) => {
       </Text>
 
       <HStack as="ul" justifyContent="space-around" flexWrap="wrap">
-        <Stats label="países" value={props.countriesCount} />
-        <Stats label="línguas" value={props.languagesCount} />
-        <Stats label="cidades +100" value={props.citiesInTop100Count} />
+        <Attribute label="países" value={props.countriesCount} />
+        <Attribute label="línguas" value={props.languagesCount} />
+        <Attribute label="cidades +100" value={props.citiesInTop100Count} />
       </HStack>
     </SimpleGrid>
   );
